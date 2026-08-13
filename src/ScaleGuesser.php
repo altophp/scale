@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of the ALTO library.
  *
- * © 2026–present Simon André
+ * © 2026-present Simon André
  *
  * For full copyright and license information, please see
  * the LICENSE file distributed with this source code.
@@ -20,16 +20,14 @@ use Alto\Scale\Exception\ScaleException;
  */
 readonly class ScaleGuesser
 {
-    public function __construct(public float $tolerance = 0.05)
-    {
-    }
+    public function __construct(public float $tolerance = 0.05) {}
 
     /**
      * @param array<float> $values
      */
     public function guess(array $values): ModularScale
     {
-        $clean = array_values(array_unique(array_filter($values, fn ($v) => $v > 0)));
+        $clean = array_values(array_unique(array_filter($values, fn($v) => $v > 0)));
         sort($clean);
         if (count($clean) < 2) {
             throw new ScaleException('Need 2+ values to guess.');
@@ -82,6 +80,6 @@ readonly class ScaleGuesser
     {
         $target = $scale ?? $this->guess($values);
 
-        return array_map(fn (float $v) => $v > 0 ? $target->snap($v) : $v, $values);
+        return array_map(fn(float $v) => $v > 0 ? $target->snap($v) : $v, $values);
     }
 }

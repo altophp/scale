@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of the ALTO library.
  *
- * © 2026–present Simon André
+ * © 2026-present Simon André
  *
  * For full copyright and license information, please see
  * the LICENSE file distributed with this source code.
@@ -18,9 +18,7 @@ namespace Alto\Scale;
  */
 readonly class ScaleLinter
 {
-    public function __construct(public ?ScaleInterface $scale = null, public float $tolerance = 0.05)
-    {
-    }
+    public function __construct(public ?ScaleInterface $scale = null, public float $tolerance = 0.05) {}
 
     /**
      * @param array<float> $values
@@ -56,6 +54,6 @@ readonly class ScaleLinter
     {
         $scale = $this->scale ?? (new ScaleGuesser($this->tolerance))->guess($values);
 
-        return array_map(fn (float $v) => $v > 0 ? $scale->snap($v) : $v, $values);
+        return array_map(fn(float $v) => $v > 0 ? $scale->snap($v) : $v, $values);
     }
 }
