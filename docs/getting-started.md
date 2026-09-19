@@ -1,33 +1,47 @@
 # Getting started
 
-Create a scale through the `Scale` facade, then ask it for the values required
-by the current design system.
+Create spacing tokens separated by eight units. After [installation](installation.md),
+save this complete script as `spacing.php` beside `vendor/`:
 
 ```php
+<?php
+
+require __DIR__.'/vendor/autoload.php';
+
 use Alto\Scale\Scale;
 
 $spacing = Scale::linear(base: 0, increment: 8);
 
-echo $spacing->get(1); // 8
-echo $spacing->get(3); // 24
-```
-
-All scales share four operations:
-
-```php
-$spacing->get(4);        // 32.0: value at step 4
-$spacing->stepOf(30);    // 4: nearest step to 30
-$spacing->snap(30);      // 32.0: nearest scale value
-$spacing->range(1, 4);   // [1 => 8.0, 2 => 16.0, 3 => 24.0, 4 => 32.0]
-```
-
-Scales are also iterable. Iteration yields steps 0 through 10:
-
-```php
-foreach ($spacing as $step => $value) {
+printf("%g\n%g\n", $spacing->get(1), $spacing->get(3));
+foreach ($spacing->range(1, 4) as $step => $value) {
     printf("%d: %g\n", $step, $value);
 }
 ```
 
-Choose a progression from [All scales](scales/index.md). If values already
-exist, use [Guessing](guessing.md) or [Linting](linting.md).
+Run `php spacing.php`. It prints:
+
+```text
+8
+24
+1: 8
+2: 16
+3: 24
+4: 32
+```
+
+## Align an existing value
+
+Using the same `$spacing` object:
+
+```php
+printf("Step: %d; value: %g\n", $spacing->stepOf(30), $spacing->snap(30));
+```
+
+This prints `Step: 4; value: 32`. `get()` reads one step; `range()` includes
+both endpoints and preserves step numbers as keys. Iterating a scale directly
+yields steps 0 through 10.
+
+Choose a progression from [Scales](scales.md). The common operations
+do not imply identical domains: modular lookup needs positive values, while
+linear spacing can cross zero. To work with an existing collection, continue
+with [Guessing](guessing.md) or [Linting](linting.md).

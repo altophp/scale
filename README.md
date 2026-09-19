@@ -43,12 +43,24 @@ use Alto\Scale\Scale;
 
 $spacing = Scale::linear(base: 0, increment: 8);
 
-echo $spacing->get(3);  // 24
-echo $spacing->snap(19); // 16
+printf("step 3: %g; snapped: %g\n", $spacing->get(3), $spacing->snap(19));
 ```
+
+The example prints `step 3: 24; snapped: 16`.
 
 All scales expose `get()`, `stepOf()`, `snap()`, and `range()` and can be iterated over steps zero
 through ten.
+
+## Documentation
+
+- [Installation](docs/installation.md)
+- [Getting started](docs/getting-started.md)
+- [Scales](docs/scales.md)
+- [Guessing](docs/guessing.md)
+- [Linting](docs/linting.md)
+
+The [documentation index](docs/index.md) lists these pages in site navigation
+order.
 
 ## Scale Types
 
@@ -68,7 +80,7 @@ $golden = Scale::golden(1);
 ```
 
 Custom ratios are available through `Scale::modular()`. See the
-[scale guide](docs/scales/index.md) for every progression and its constraints.
+[scale guide](docs/scales.md) for every progression and its constraints.
 
 ## Guessing
 
@@ -101,7 +113,7 @@ $fixed = $linter->fix([8, 15, 24]); // [8.0, 16.0, 24.0]
 ```
 
 Read [Linting values](docs/linting.md) for the report format and inferred-scale behavior. The
-[complete documentation](docs/index.md) also covers installation, the shared API, and each scale
+[complete documentation](docs/index.md) also covers installation, shared operations, and each scale
 type.
 
 ## Contributing
