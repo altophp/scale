@@ -1,14 +1,14 @@
-# Scale types
+# Scales
 
 Choose the progression according to the relationship between consecutive
 values.
 
 | Scale | Relationship | Typical use |
 | --- | --- | --- |
-| [Modular](modular.md) | Multiply by one ratio | Type sizes, proportional spacing |
-| [Linear](linear.md) | Add one increment | Baseline grids, fixed spacing |
-| [Fibonacci](fibonacci.md) | Follow Fibonacci numbers | Integer rhythms and counts |
-| [Multi-strand](multi-strand.md) | Interleave several modular scales | Multiple coordinated bases |
+| [Modular](scales/modular.md) | Multiply by one ratio | Type sizes, proportional spacing |
+| [Linear](scales/linear.md) | Add one increment | Baseline grids, fixed spacing |
+| [Fibonacci](scales/fibonacci.md) | Follow Fibonacci numbers | Integer rhythms and counts |
+| [Multi-strand](scales/multi-strand.md) | Interleave several modular scales | Multiple coordinated bases |
 
 Every type implements `ScaleInterface`, so application code can accept any
 scale while using `get()`, `stepOf()`, `snap()`, and `range()`.
